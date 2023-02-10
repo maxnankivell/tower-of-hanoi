@@ -1,19 +1,13 @@
-import { useState } from 'react';
 import './App.scss';
+import Tower from './components/Tower';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className='App'>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
+    <div className='app'>
+      <h1 className='title'>Tower of Hanoi</h1>
+      <Tower className='tower1' />
+      <Tower className='tower2' />
+      <Tower className='tower3' />
     </div>
   );
 }

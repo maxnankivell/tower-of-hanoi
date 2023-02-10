@@ -1,42 +1,31 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'title title title'
+    'tower1 tower2 tower3';
+  row-gap: 2rem;
+  column-gap: 2rem;
+  background-color: darkblue;
   padding: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
   text-align: center;
+  grid-area: title;
+  margin: 0.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.tower1 {
+  grid-area: tower1;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.tower2 {
+  grid-area: tower2;
+  background-color: green;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.tower3 {
+  grid-area: tower3;
 }
