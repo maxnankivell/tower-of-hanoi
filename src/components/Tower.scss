@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
 
   .vertical-pole {
     position: absolute;
@@ -10,14 +11,16 @@
     height: 100%;
     width: 1.5rem;
     transform: translateX(-50%);
-    border-radius: 16px;
+    border-radius: 1rem;
     background-color: crimson;
+    z-index: 1;
   }
 
   .horizontal-base {
     height: 1.5rem;
     width: 100%;
-    border-radius: 16px;
+    border-radius: 1rem;
     background-color: crimson;
+    z-index: 2;
   }
 }
