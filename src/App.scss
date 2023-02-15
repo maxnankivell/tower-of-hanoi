@@ -1,13 +1,13 @@
 .app {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto minmax(600px, 1fr) 1fr;
   grid-template-areas:
     'title title title'
-    'tower1 tower2 tower3';
+    'tower1 tower2 tower3'
+    'footer footer footer';
   row-gap: 2rem;
   column-gap: 2rem;
-  background-color: darkblue;
   padding: 2rem;
   width: 100%;
   height: 100%;
@@ -24,8 +24,14 @@
 }
 .tower1 {
   grid-area: tower2;
-  background-color: green;
 }
 .tower2 {
   grid-area: tower3;
+}
+
+.footer {
+  grid-area: footer;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
 }
