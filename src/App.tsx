@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './App.scss';
@@ -46,6 +46,10 @@ function App() {
     });
 
   const app = useRef<HTMLDivElement>(null);
+  const [towerWidth, setTowerWidth] = useState(0);
+  useEffect(() => {
+    setTowerWidth((app.current?.offsetWidth ?? 0) / 3);
+  }, [app.current?.offsetWidth]);
 
   const discs: DiscObject[] = [
     { id: 0, color: '#F63E02', widthMultiplier: 0.8 },
@@ -57,10 +61,7 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <CustomDragLayer
-        discs={discs}
-        towerWidth={app.current ? app.current.offsetWidth / 3 : 0}
-      ></CustomDragLayer>
+      <CustomDragLayer discs={discs} towerWidth={towerWidth}></CustomDragLayer>
       <div ref={app} className='app'>
         <h1 className='title'>Tower of Hanoi</h1>
         {[0, 1, 2].map((towerId) => (
@@ -76,9 +77,7 @@ function App() {
                 key={discs[disc].id}
                 id={discs[disc].id}
                 color={discs[disc].color}
-                width={
-                  app.current ? (app.current.offsetWidth / 3) * discs[disc].widthMultiplier : 0
-                }
+                width={towerWidth * discs[disc].widthMultiplier}
                 isTopDisc={isTopDisc}
               />
             ))}
