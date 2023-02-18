@@ -63,7 +63,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <CustomDragLayer discs={discs} towerWidth={towerWidth}></CustomDragLayer>
       <div ref={app} className='app'>
-        <h1 className='title'>Tower of Hanoi</h1>
+        <h1 className='title'>Towers of Hanoi</h1>
         {[0, 1, 2].map((towerId) => (
           <Tower
             key={towerId}
