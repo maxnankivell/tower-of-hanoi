@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './App.scss';
+import CustomDragLayer from './components/CustomDragLayer';
 import Disc from './components/Disc';
 import Tower from './components/Tower';
+import { DiscObject } from './types-and-constants';
 
 function App() {
   const [towerToDiscsObject, setTowerToDiscsObject] = useState<Record<number, number[]>>({
@@ -43,16 +45,17 @@ function App() {
       2: [],
     });
 
-  const discs = [
-    <Disc key={0} id={0} color='#F63E02' width='80' isTopDisc={isTopDisc} />,
-    <Disc key={1} id={1} color='#06BCC1' width='65' isTopDisc={isTopDisc} />,
-    <Disc key={2} id={2} color='#85CB33' width='50' isTopDisc={isTopDisc} />,
-    <Disc key={3} id={3} color='#F6AE2D' width='35' isTopDisc={isTopDisc} />,
-    <Disc key={4} id={4} color='#CB48B7' width='20' isTopDisc={isTopDisc} />,
+  const discs: DiscObject[] = [
+    { id: 0, color: '#F63E02', width: '80' },
+    { id: 1, color: '#06BCC1', width: '65' },
+    { id: 2, color: '#85CB33', width: '50' },
+    { id: 3, color: '#F6AE2D', width: '35' },
+    { id: 4, color: '#CB48B7', width: '20' },
   ];
 
   return (
     <DndProvider backend={HTML5Backend}>
+      <CustomDragLayer discs={discs}></CustomDragLayer>
       <div className='app'>
         <h1 className='title'>Tower of Hanoi</h1>
         {[0, 1, 2].map((towerId) => (
@@ -63,7 +66,15 @@ function App() {
             getTopDiscId={getTopDiscId}
             moveDisc={moveDisc}
           >
-            {towerToDiscsObject[towerId].map((disc) => discs[disc])}
+            {towerToDiscsObject[towerId].map((disc) => (
+              <Disc
+                key={discs[disc].id}
+                id={discs[disc].id}
+                color={discs[disc].color}
+                width={discs[disc].width}
+                isTopDisc={isTopDisc}
+              />
+            ))}
           </Tower>
         ))}
         <div className='footer'>

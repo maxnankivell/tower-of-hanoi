@@ -1,6 +1,5 @@
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../types-and-constants';
-import { CustomDragLayer } from './Disc';
 import './Tower.scss';
 
 interface TowerProps {
@@ -30,7 +29,6 @@ function Tower(props: TowerProps) {
     <div ref={drop} className={`${className} tower-container`}>
       <div className='vertical-pole'></div>
       <div className='horizontal-base'></div>
-      <CustomDragLayer></CustomDragLayer>
       {children}
     </div>
   );
