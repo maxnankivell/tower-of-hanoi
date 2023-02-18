@@ -3,15 +3,16 @@ import { DiscObject } from '../types-and-constants';
 
 interface CustomDragLayerProps {
   discs: DiscObject[];
+  towerWidth: number;
 }
 
 const CustomDragLayer = (props: CustomDragLayerProps) => {
-  const { discs } = props;
+  const { discs, towerWidth } = props;
 
   const { isDragging, currentOffset, item } = useDragLayer((monitor: DragLayerMonitor) => {
     return {
       isDragging: monitor.isDragging(),
-      currentOffset: monitor.getSourceClientOffset(),
+      currentOffset: monitor.getClientOffset(),
       item: monitor.getItem(),
     };
   });
@@ -20,24 +21,22 @@ const CustomDragLayer = (props: CustomDragLayerProps) => {
     <div
       style={{
         // functional
-        transform: `translate(${currentOffset.x}px, ${currentOffset.y}px)`,
+        transform: `translate(${
+          currentOffset.x - (towerWidth * discs[item.id].widthMultiplier) / 2
+        }px, ${currentOffset.y - 16}px)`,
         position: 'fixed',
         top: 0,
         left: 0,
         pointerEvents: 'none',
 
         // design only
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '150px',
-        height: '50px',
-        border: '1px solid red',
-        color: 'red',
+        width: `${towerWidth * discs[item.id].widthMultiplier}px`,
+        background: discs[item.id].color,
+        height: '32px',
+        borderRadius: '1em',
+        zIndex: '5',
       }}
-    >
-      Dragging {item.id}
-    </div>
+    ></div>
   ) : null;
 };
 

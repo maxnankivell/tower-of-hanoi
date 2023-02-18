@@ -5,5 +5,5 @@ export const ItemTypes = {
 export interface DiscObject {
   id: number;
   color: string;
-  width: string;
+  widthMultiplier: number;
 }

@@ -5,7 +5,7 @@ import { ItemTypes } from '../types-and-constants';
 import './Disc.scss';
 
 interface DiscProps {
-  width: string;
+  width: number;
   color: string;
   id: number;
   isTopDisc: (id: number) => boolean;
@@ -33,10 +33,12 @@ function Disc(props: DiscProps) {
   return (
     <div
       ref={drag}
-      className='disc-container'
       style={{
-        width: `${width}%`,
+        width: `${width}px`,
         background: color,
+        height: '32px',
+        borderRadius: '1em',
+        zIndex: '5',
         visibility: isDragging ? 'hidden' : 'inherit',
       }}
     ></div>
